@@ -1,0 +1,13 @@
+POST http://localhost:4004/odata/v4/DynamicFormServices/getBuilders
+Content-Type: application/json
+Accept: application/json
+
+{}
+
+
+###
+POST http://localhost:4004/odata/v4/DynamicFormServices/getForms
+Content-Type: application/json
+Accept: application/json
+
+{}

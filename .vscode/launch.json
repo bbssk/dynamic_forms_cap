@@ -1,5 +1,21 @@
 {
   "version": "0.2.0",
+  "compounds": [
+    {
+      "name": "Start Development",
+      "configurations": [
+        "cds watch development (SQLite)",
+        "Start router"
+      ]
+    },
+    {
+      "name": "Start Hybrid Development",
+      "configurations": [
+        "cds watch hybrid (HanaCloud)",
+        "Start router"
+      ]
+    }
+  ],
   "configurations": [
     {
       "name": "cds serve",
@@ -12,6 +28,33 @@
         "--with-mocks",
         "--in-memory?"
       ],
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "command": "PORT=5001 cds bind --exec -- npm start --prefix app",
+      "name": "Start router",
+      "request": "launch",
+      "type": "node-terminal",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "command": "DEBUG=all cds watch --profile development --port 4004",
+      "name": "cds watch development (SQLite)",
+      "request": "launch",
+      "type": "node-terminal",
+      "skipFiles": [
+        "<node_internals>/**"
+      ]
+    },
+    {
+      "command": "DEBUG=all cds watch --profile hybrid --port 4004",
+      "name": "cds watch hybrid (HanaCloud)",
+      "request": "launch",
+      "type": "node-terminal",
       "skipFiles": [
         "<node_internals>/**"
       ]

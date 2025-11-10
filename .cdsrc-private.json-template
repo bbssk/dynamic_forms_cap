@@ -1,0 +1,34 @@
+{
+  "requires": {
+    "destinations": {
+      "binding": {
+        "type": "cf",
+        "apiEndpoint": "https://api.cf.us10-001.hana.ondemand.com",
+        "org": "3c086534trial",
+        "space": "dev",
+        "instance": "mobile-dynamic-forms-destination",
+        "key": "mobile-dynamic-forms-destination-key"
+      },
+      "kind": "destinations",
+      "vcap": {
+        "name": "destinations"
+      }
+    },
+    "[hybrid]": {
+      "destinations": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.us10-001.hana.ondemand.com",
+          "org": "3c086534trial",
+          "space": "dev",
+          "instance": "mobile-dynamic-forms-destination",
+          "key": "mobile-dynamic-forms-destination-key"
+        },
+        "kind": "destinations",
+        "vcap": {
+          "name": "destinations"
+        }
+      }
+    }
+  }
+}

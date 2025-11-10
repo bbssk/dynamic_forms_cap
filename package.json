@@ -3,14 +3,40 @@
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "dependencies": {
+    "@sap-cloud-sdk/http-client": "^4.1.2",
+    "@sap-cloud-sdk/resilience": "^4.1.2",
+    "@sap/xssec": "^4.10.0",
     "@sap/cds": "^9",
     "express": "^4"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^2"
+    "@cap-js/sqlite": "^2",
+    "@sap/cds-dk": "^9",
+    "cds-plugin-ui5": "^0.13.0"
   },
   "scripts": {
     "start": "cds-serve"
   },
-  "private": true
+  "cds": {
+    "requires": {
+      "auth": {
+        "kind": "mocked"
+      },
+      "db": {
+        "kind": "sqlite"
+      },
+      "Mobile.Dynamic.Forms": {
+        "kind": "rest",
+        "model": "srv/external/dynamic_forms_ext",
+        "impl": "srv/external/dynamic_forms_ext.js",
+        "credentials": {
+          "destination": "Dynamic_Forms"
+        }
+      }
+    }
+  },
+  "private": true,
+  "workspaces": [
+    "app/*"
+  ]
 }
