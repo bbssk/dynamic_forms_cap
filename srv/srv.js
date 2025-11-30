@@ -245,12 +245,12 @@ module.exports = cds.service.impl(async function () {
         });
     }
 
-    // this.on('READ', PersistenceForms, async (req) => {
+    this.on('READ', PersistenceForms, async (req) => {
 
         
-    //     await this.send('getPersistenceForms');
-    //     return await cds.run(req.query);
-    // });
+        await this.send('getPersistenceForms');
+        return await cds.run(req.query);
+    });
 
     async function generatePdfFromIds(ids) {
         // 1. Create local folder
