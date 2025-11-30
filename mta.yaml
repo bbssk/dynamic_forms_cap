@@ -1,0 +1,89 @@
+_schema-version: 3.3.0
+ID: dfextension
+version: 1.0.0
+description: "Dynamic Forms Extension"
+parameters:
+  enable-parallel-deployments: true
+  deploy_mode: html5-repo
+  appname: dfextension
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - cds build --production
+modules:
+  - name: dfextension-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+      disk-quota: 1024M
+      memory: 512M
+    build-parameters:
+      builder: npm
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: dfextension-auth
+      - name: dfextension-db
+      - name: dfextension-destination
+    properties:
+      SAP_JWT_TRUST_ACL:
+        - clientid: '*'
+          identityzone: '*'
+
+  - name: dfextension-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: dfextension-db
+
+  - name: dfextension
+    type: approuter.nodejs
+    path: app/
+    parameters:
+      keep-existing-routes: true
+      disk-quota: 1024M
+      memory: 256M
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api # must be used in xs-app.json as well
+          url: ~{srv-url}
+          forwardAuthToken: true
+      - name: dfextension-auth
+    properties:
+      SAP_JWT_TRUST_ACL:
+        - clientid: '*'
+          identityzone: '*'
+resources:
+  - name: dfextension-auth
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      service-keys:
+        - name: dfextension-auth-key
+      config:
+        xsappname: dfextension-${org}-${space}
+        tenant-mode: dedicated
+  - name: dfextension-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+      service-keys:
+        - name: dfextension-db-key
+  - name: dfextension-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+      service-keys:
+        - name: dfextension-destination-key

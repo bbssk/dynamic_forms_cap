@@ -1,11 +1,17 @@
 {
-  "welcomeFile": "debug",
+  "welcomeFile": "/odata/v4/DynamicFormServices",
   "authenticationMethod": "route",
   "logout": {
     "logoutEndpoint": "/app-logout",
     "logoutPage": "/"
   },
   "routes": [
+    {
+      "source": "^/odata/v4/(.*)$",
+      "destination": "srv-api",
+      "csrfProtection": true,
+      "authenticationType": "xsuaa"
+    },
     {
       "source": "^/debug$",
       "target": "/",

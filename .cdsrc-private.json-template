@@ -4,10 +4,8 @@
       "binding": {
         "type": "cf",
         "apiEndpoint": "https://api.cf.eu20-001.hana.ondemand.com",
-        "org": "evorait-evocc-hcs-free",
-        "space": "evocc-dev-bhargav",
-        "instance": "mobile-dynamic-forms-auth",
-        "key": "mobile-dynamic-forms-auth-key",
+        "instance": "dfextension-auth",
+        "key": "dfextension-auth-key",
         "resolved": false
       },
       "kind": "xsuaa-auth",
@@ -19,10 +17,8 @@
       "binding": {
         "type": "cf",
         "apiEndpoint": "https://api.cf.eu20-001.hana.ondemand.com",
-        "org": "evorait-evocc-hcs-free",
-        "space": "evocc-dev-bhargav",
-        "instance": "mobile-dynamic-forms-destination",
-        "key": "mobile-dynamic-forms-destination-key",
+        "instance": "dfextension-destination",
+        "key": "dfextension-destination-key",
         "resolved": false
       },
       "kind": "destinations",
@@ -35,10 +31,8 @@
         "binding": {
           "type": "cf",
           "apiEndpoint": "https://api.cf.eu20-001.hana.ondemand.com",
-          "org": "evorait-evocc-hcs-free",
-          "space": "evocc-dev-bhargav",
-          "instance": "mobile-dynamic-forms-db",
-          "key": "mobile-dynamic-forms-db-key"
+          "instance": "dfextension-db",
+          "key": "dfextension-db-key"
         },
         "kind": "hana",
         "vcap": {
@@ -49,10 +43,8 @@
         "binding": {
           "type": "cf",
           "apiEndpoint": "https://api.cf.eu20-001.hana.ondemand.com",
-          "org": "evorait-evocc-hcs-free",
-          "space": "evocc-dev-bhargav",
-          "instance": "mobile-dynamic-forms-auth",
-          "key": "mobile-dynamic-forms-auth-key"
+          "instance": "dfextension-auth",
+          "key": "dfextension-auth-key"
         },
         "kind": "xsuaa-auth",
         "vcap": {

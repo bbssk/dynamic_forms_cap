@@ -1,6 +1,4 @@
 {
-    "xsappname": "mobile-dynamic-forms-extension",
-    "tenant-mode": "dedicated",
     "scopes": [],
     "attributes": [],
     "role-templates": [],

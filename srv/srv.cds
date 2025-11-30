@@ -1,8 +1,9 @@
-using dynamic_forms_cap.db as db from '../db/schema';
+using mobile.dynamicforms.db as db from '../db/schema';
 
 service DynamicForms @(path:'DynamicFormServices')  {
     @readonly entity Builder as projection on db.Builder;
+    @readonly entity PersistenceForms as projection on db.PersistenceForms;
     action getBuilders();
-    action getForms() returns LargeString;
+    action getPersistenceForms() returns array of PersistenceForms;
     action getToken() returns LargeString;
 }

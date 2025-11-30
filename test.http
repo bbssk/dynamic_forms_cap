@@ -6,7 +6,7 @@ Accept: application/json
 
 
 ###
-POST http://localhost:4004/odata/v4/DynamicFormServices/getForms
+POST http://localhost:4004/odata/v4/DynamicFormServices/getPersistenceForms
 Content-Type: application/json
 Accept: application/json
 

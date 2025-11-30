@@ -1,8 +1,10 @@
 {
-  "name": "dynamic_forms_cap",
+  "name": "dynamic-forms-extension",
   "version": "1.0.0",
   "description": "A simple CAP project.",
   "dependencies": {
+    "@cap-js-community/odata-v2-adapter": "^1.15.7",
+    "@cap-js/hana": "^2.1.1",
     "@sap-cloud-sdk/http-client": "^4.1.2",
     "@sap-cloud-sdk/resilience": "^4.1.2",
     "@sap/cds": "^9",
@@ -23,17 +25,48 @@
   "cds": {
     "requires": {
       "auth": {
-        "kind": "mocked"
+        "kind": "xsuaa"
       },
-      "db": {
-        "kind": "sqlite"
+      "[development]": {
+        "db": {
+          "kind": "sqlite",
+          "impl": "@cap-js/sqlite",
+          "credentials": {
+            "url": "db.sqlite"
+          }
+        },
+        "auth": {
+          "kind": "xsuaa"
+        }
+      },
+      "[hybrid]": {
+        "db": {
+          "kind": "hana",
+          "impl": "@cap-js/hana",
+          "deploy-format": "hdbtable"
+        }
+      },
+      "[production]": {
+        "db": {
+          "kind": "hana",
+          "impl": "@cap-js/hana",
+          "deploy-format": "hdbtable"
+        },
+        "Mobile.Dynamic.Forms": {
+          "kind": "rest",
+          "model": "srv/external/dynamic_forms_ext",
+          "impl": "srv/external/dynamic_forms_ext.js",
+          "credentials": {
+            "destination": "API_DYNAMIC_FORMS_TRIAL"
+          }
+        }
       },
       "Mobile.Dynamic.Forms": {
         "kind": "rest",
         "model": "srv/external/dynamic_forms_ext",
         "impl": "srv/external/dynamic_forms_ext.js",
         "credentials": {
-          "destination": "Dynamic_Forms"
+          "destination": "API_DYNAMIC_FORMS_TRIAL"
         }
       }
     }
