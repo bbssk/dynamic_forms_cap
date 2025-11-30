@@ -1,5 +1,5 @@
 {
-  "welcomeFile": "/odata/v4/DynamicFormServices",
+  "welcomeFile": "/odata/v4/DynamicFormServices/",
   "authenticationMethod": "route",
   "logout": {
     "logoutEndpoint": "/app-logout",
