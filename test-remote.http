@@ -1,0 +1,10 @@
+@host=https://evocc-hana-cloud-db-free-j2mvsolc.authentication.eu20.hana.ondemand.com
+
+# @name FetchAccessToken
+POST {{host}}/oauth/token?grant_type=client_credentials&response_type=token
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic sb-dfextension-evorait-evocc-hcs-free-evocc-dev-bhargav!t37050:da4baea7-e3a7-4c1b-b4fe-4847e8a1b7f2$ufbTV6IaJiL3pcIZNoLCogPZAtrUz0GOV5KVgsmppWI=
+
+### 
+GET https://evorait-evocc-hcs-free-evocc-dev-bhargav-dfextension-srv.cfapps.eu20-001.hana.ondemand.com/odata/v4/DynamicFormServices
+Authorization: bearer {{FetchAccessToken.response.body.access_token}}

@@ -1,10 +1,5 @@
 namespace mobile.dynamicforms.db;
-using { cuid, managed } from '@sap/cds/common';
-
-
-entity Builder:cuid,managed{
-    body: LargeString;
-}
+using { cuid } from '@sap/cds/common';
 entity PersistenceForms : cuid {
 
     @title: 'Application Name'
