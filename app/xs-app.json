@@ -1,0 +1,32 @@
+{
+  "welcomeFile": "debug",
+  "authenticationMethod": "route",
+  "logout": {
+    "logoutEndpoint": "/app-logout",
+    "logoutPage": "/"
+  },
+  "routes": [
+    {
+      "source": "^/debug$",
+      "target": "/",
+      "destination": "srv-api",
+      "csrfProtection": true
+    },
+    {
+      "source": "^/(.*)$",
+      "destination": "srv-api",
+      "csrfProtection": true,
+      "authenticationType": "xsuaa"
+    },
+    {
+      "source": "^/appconfig/",
+      "localDir": ".",
+      "cacheControl": "no-cache, no-store, must-revalidate"
+    },
+    {
+      "source": "^/user-api(.*)",
+      "target": "$1",
+      "service": "sap-approuter-userapi"
+    }
+  ]
+}

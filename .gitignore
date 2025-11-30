@@ -3,7 +3,7 @@ _out
 *.db
 *.sqlite
 connection.properties
-default-*.json
+#default-*.json
 .cdsrc-private.json
 package-lock.json
 gen/
@@ -33,3 +33,7 @@ mta_archives/
 
 # @cap-js/cds-typer
 @cds-models
+
+db.sqlite-shm
+db.sqlite-wal
+.deploy.env

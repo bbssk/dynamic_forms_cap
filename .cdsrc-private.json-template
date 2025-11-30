@@ -1,13 +1,29 @@
 {
   "requires": {
+    "auth": {
+      "binding": {
+        "type": "cf",
+        "apiEndpoint": "https://api.cf.eu20-001.hana.ondemand.com",
+        "org": "evorait-evocc-hcs-free",
+        "space": "evocc-dev-bhargav",
+        "instance": "mobile-dynamic-forms-auth",
+        "key": "mobile-dynamic-forms-auth-key",
+        "resolved": false
+      },
+      "kind": "xsuaa-auth",
+      "vcap": {
+        "name": "auth"
+      }
+    },
     "destinations": {
       "binding": {
         "type": "cf",
-        "apiEndpoint": "https://api.cf.us10-001.hana.ondemand.com",
-        "org": "3c086534trial",
-        "space": "dev",
+        "apiEndpoint": "https://api.cf.eu20-001.hana.ondemand.com",
+        "org": "evorait-evocc-hcs-free",
+        "space": "evocc-dev-bhargav",
         "instance": "mobile-dynamic-forms-destination",
-        "key": "mobile-dynamic-forms-destination-key"
+        "key": "mobile-dynamic-forms-destination-key",
+        "resolved": false
       },
       "kind": "destinations",
       "vcap": {
@@ -15,18 +31,32 @@
       }
     },
     "[hybrid]": {
-      "destinations": {
+      "db": {
         "binding": {
           "type": "cf",
-          "apiEndpoint": "https://api.cf.us10-001.hana.ondemand.com",
-          "org": "3c086534trial",
-          "space": "dev",
-          "instance": "mobile-dynamic-forms-destination",
-          "key": "mobile-dynamic-forms-destination-key"
+          "apiEndpoint": "https://api.cf.eu20-001.hana.ondemand.com",
+          "org": "evorait-evocc-hcs-free",
+          "space": "evocc-dev-bhargav",
+          "instance": "mobile-dynamic-forms-db",
+          "key": "mobile-dynamic-forms-db-key"
         },
-        "kind": "destinations",
+        "kind": "hana",
         "vcap": {
-          "name": "destinations"
+          "name": "db"
+        }
+      },
+      "auth": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.eu20-001.hana.ondemand.com",
+          "org": "evorait-evocc-hcs-free",
+          "space": "evocc-dev-bhargav",
+          "instance": "mobile-dynamic-forms-auth",
+          "key": "mobile-dynamic-forms-auth-key"
+        },
+        "kind": "xsuaa-auth",
+        "vcap": {
+          "name": "auth"
         }
       }
     }

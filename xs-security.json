@@ -1,0 +1,15 @@
+{
+    "xsappname": "mobile-dynamic-forms-extension",
+    "tenant-mode": "dedicated",
+    "scopes": [],
+    "attributes": [],
+    "role-templates": [],
+    "oauth2-configuration": {
+        "redirect-uris": [
+            "https://*.cfapps.eu20-001.hana.ondemand.com/login/callback",
+            "http://localhost:5001/login/callback",
+            "https://*.eu10.applicationstudio.cloud.sap/login/callback",
+            "https://*.eu20.applicationstudio.cloud.sap/login/callback"
+        ]
+    }
+}
