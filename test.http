@@ -11,3 +11,10 @@ Content-Type: application/json
 Accept: application/json
 
 {}
+
+###
+POST http://localhost:4004/odata/v4/DynamicFormServices/getToken
+Content-Type: application/json
+Accept: application/xml
+
+{}

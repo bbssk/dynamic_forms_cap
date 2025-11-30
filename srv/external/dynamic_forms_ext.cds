@@ -51,3 +51,15 @@ action Mobile.Dynamic.Forms.builder_get(
 action Mobile.Dynamic.Forms.get_forms(
   
 ) returns LargeString;
+
+@Common.Label : 'Service API V2'
+@Core.Description : 'Bulk update of the Service Calls with optional Activities'
+@Core.LongDescription : 'Create or update multiple Service Calls with optional Activities. Every Service Call is updated in seperated transaction and results for every operation are send in multi status response.'
+@openapi.method : 'GET'
+@openapi.path : 'basic/forms/fr/service/persistence/search/orbeon/builder'
+action Mobile.Dynamic.Forms.get_token(
+  @description : '**Deprecated, will be removed soon**. Use the *X-Account-ID* header instead.'
+  @openapi.in : 'header'
+  @openapi.name : 'x-csrf-token'
+  x_csrf_token :  String default 'fetch',
+) returns LargeString;

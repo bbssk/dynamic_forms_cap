@@ -5,7 +5,7 @@ class service_management_ext extends RestRemoteService {
     async init() {
 
         this.customizeHeaders = (headers) => {
-            headers["accept"] = "*/* ";
+            headers["accept"] = "application/xml";
             headers["content-type"] = "application/xml";
             headers["accept-language"] = "";
         };
