@@ -26,6 +26,12 @@ action Mobile.Dynamic.Forms.builder_get(
   @openapi.name : 'x-csrf-token'
   x_csrf_token : String,
 
+  @description : 'CSRF token fetched via prior GET request'
+  @openapi.in : 'header'
+  @openapi.required : true
+  @openapi.name : 'Cookie'
+  Cookie : String,
+
   @description : 'Content type must be application/xml'
   @openapi.in : 'header'
   @openapi.required : true

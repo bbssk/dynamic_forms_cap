@@ -33,10 +33,17 @@ class RestRemoteService extends cds.RemoteService {
 
             req.method = this.getMethod(definition);
             req.path = this.getPath(definition, req.data);
-            Object.assign(
-                req.headers,
-                this.getHeaders(definition, req.data)
-            );
+            if (req.path == 'basic/forms/fr/service/persistence/search/orbeon/builder' && req.method == 'POST') {
+                Object.assign(
+                    req.headers,
+                    { "accept": "application/xml", "content-type": "application/xml", "x-csrf-token": req.data.x_csrf_token, "Cookie":req.data.Cookie }
+                );
+            } else {
+                Object.assign(
+                    req.headers,
+                    this.getHeaders(definition, req.data)
+                );
+            }
             req.data = this.getBody(definition, req.data);
             req.event = "";
         });

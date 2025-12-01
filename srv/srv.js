@@ -12,19 +12,23 @@ module.exports = cds.service.impl(async function () {
     const { PersistenceForms } = this.entities;
 
     this.on('getBuilders', async (req) => {
-        var x_csrf_token = await this.send('getToken', {
+        var resp = await this.send('getToken', {
 
         });
-        const body = JSON.stringify(`
-                                    <?xml version="1.0" encoding="UTF-8"?>
-                                    <search return-all-indexed-fields="true">
-                                    <query/>
-                                    <page-size>25</page-size>
-                                    <page-number>1</page-number>
-                                    </search>
-        `);
+        // const body = JSON.stringify(`
+        //                             <?xml version="1.0" encoding="UTF-8"?>
+        //                             <search return-all-indexed-fields="true">
+        //                             <query/>
+        //                             <page-size>25</page-size>
+        //                             <page-number>1</page-number>
+        //                             </search>
+        // `);
+        var x_csrf_token=resp.token, Cookie=resp.cookie;
+        const body = `<?xml version="1.0" encoding="UTF-8"?><search return-all-indexed-fields="true"><query/><page-size>25</page-size><page-number>1</page-number></search>`;
+
         await Dynamic_Forms_API.send("builder_get", {
             x_csrf_token,
+            Cookie,
             body
         }).then(result => {
             console.log("API call successful:", result);
@@ -54,7 +58,8 @@ module.exports = cds.service.impl(async function () {
 
         try {
             const result = await Dynamic_Forms_API.send("get_token", {
-                x_csrf_token: "fetch"
+                x_csrf_token: "fetch",
+                cookie: "fetch"
             });
 
             console.log("Token API successful:", result);
@@ -66,7 +71,7 @@ module.exports = cds.service.impl(async function () {
             console.error("Token API failed:", err);
 
             // If token comes from error response header:
-            return err.reason?.response?.headers?.["x-csrf-token"];
+            return {token:err.reason?.response?.headers?.["x-csrf-token"], cookie:err.reason?.response?.headers.getSetCookie()[0]};
         }
 
 
@@ -247,7 +252,7 @@ module.exports = cds.service.impl(async function () {
 
     // this.on('READ', PersistenceForms, async (req) => {
 
-        
+
     //     await this.send('getPersistenceForms');
     //     return await cds.run(req.query);
     // });
